@@ -23,5 +23,9 @@ public class studentEntity{
     public studentEntity(){
 
     }
-    public studentEntity(Long)
+    public studentEntity(Long id,string name,string email){
+        this.id=id
+        this.name=name;
+        this.email=email;
+    }
 }

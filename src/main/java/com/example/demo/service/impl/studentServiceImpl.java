@@ -1,40 +1,56 @@
 package com.example.demo.service.impl;
 
-import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.*;
+import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.*;
-import com.example.demo.repository.*;
-import com.example.demo.service.*;
-import com.example.demo.expception.*;
+import com.example.demo.entity.studentEntity;
+import com.example.demo.repository.studentRepo;
+import com.example.demo.service.studentService;
+
+import java.util.*;
 
 @Service
-public class studentServiceImpl implements StudentService{
-    
+public class studentServiceImpl implements studentService {
+
     @Autowired
     studentRepo repo;
 
-    public List<studentEntity> getAll(){
+    @Override
+    public List<studentEntity> getAll() {
         return repo.findAll();
     }
 
-    public studentEntity addStudent(studentEntity student){
+    @Override
+    public studentEntity addStudent(studentEntity student) {
         return repo.save(student);
     }
 
-public studentEntity getbyId(Long id){
-    return repo.findById(id).orElseThrow(() ->  new StudentNotFoundException("Student ID not Found"));
+    @Override
+    public studentEntity getById(Long id) {
+        Optional<studentEntity> data = repo.findById(id);
+        if (data.isPresent()) {
+            return data.get();
+        } else {
+            return null;
+        }
+    }
 
-}
-public studentEntity updateById(Long id,StudentEntity newstu){
-    studentEntity existing = getId(id);
-    newstu.setId(existing.getbyId());
-   return repo.save(newstu);
+    @Override
+    public String updateStudent(Long id, studentEntity newstu) {
+        if (repo.existsById(id)) {
+            newstu.setId(id);
+            repo.save(newstu);
+            return "Student updated";
+        }
+        return "Student not found";
+    }
 
-}
-publice studentEntity deleteByID(Long id){
-    studentEntity data=getbyId(id);
-    return repo.deleteById(id);
-}
+    @Override
+    public String deleteStudent(long id) {
+        if (repo.existsById(id)) {
+            repo.deleteById(id);
+            return "Student deleted";
+        }
+        return "Student not found";
+    }
 }

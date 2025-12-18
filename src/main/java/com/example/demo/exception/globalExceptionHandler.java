@@ -19,14 +19,10 @@ public class globalExceptionHandler {
 
         ex.getBindingResult()
           .getFieldErrors()
-          .forEach(err ->  error.put(err.getField(), err.getDefaultMessage())
+          .forEach(err ->
+              error.put(err.getField(), err.getDefaultMessage())
           );
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
-
-    @ExceptionHandler(StudentNotFoundException.class)
-    public ResponseEntity<?> handleStudentNotValid(StudentNotFoundException ex){
-           return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);
-    }  
 }

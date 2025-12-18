@@ -1,1 +1,4 @@
-public class studentControll
+public class studentController {
+    @Autowired
+    
+}

@@ -11,7 +11,7 @@ public interface studentService {
 
     studentEntity getById(Long id);
 
-    String updateStudent(Long id, studentEntity newstu);
+   studentEntity updateStudent(Long id, studentEntity newstu);
 
     String deleteStudent(long id);
 }

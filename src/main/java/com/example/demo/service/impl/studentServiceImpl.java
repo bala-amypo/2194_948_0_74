@@ -27,5 +27,10 @@ public studentEntity getbyId(Long id){
     return repo.findById(id).orElseThrow(() ->  new StudentNotFoundException("Student ID not Found"));
 
 }
-public studentEntity updateById(Long id,StudentEntity new stu)
+public studentEntity updateById(Long id,StudentEntity newstu){
+    studentEntity existing = getId(id);
+    newstu.setId(existing.getbyId());
+   return repo.save(newstu);
+
+}
 }

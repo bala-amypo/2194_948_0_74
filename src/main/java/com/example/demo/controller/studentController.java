@@ -35,6 +35,8 @@ public class studentController {
                 return service.updateById(id,newstu);
             }
             @DeleteMapping("/delete/{id}")
-            public String
+            public String delateById(@PathVaraiable Long id){
+            service.deleteById
+            }
     
 }

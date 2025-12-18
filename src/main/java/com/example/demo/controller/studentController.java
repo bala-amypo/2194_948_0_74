@@ -21,6 +21,8 @@ public class studentController {
 
     @postMapping("/add")
 
-    public studentE
+    public studentEntity addStudent(@Valid @RequestBody studentEntity student){
+        return service.addStudent(student);
+    }
 
 }

@@ -34,6 +34,7 @@ public class studentController {
             public studentEntity updateById(@pathVariable Loge id,Valid @RequestBody studentEntity newstu){
                 return service.updateById(id,newstu);
             }
-            @DeleteMapping("/delete")
+            @DeleteMapping("/delete/{id}")
+            public String
     
 }

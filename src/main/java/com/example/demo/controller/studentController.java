@@ -32,7 +32,8 @@ public class studentController {
 
             @putMapping("/update/{id}")
             public studentEntity updateById(@pathVariable Loge id,Valid @RequestBody studentEntity newstu){
-                return service.updateById(id,newstu)
+                return service.updateById(id,newstu);
             }
+            @DeleteMapping("/delete")
     
 }

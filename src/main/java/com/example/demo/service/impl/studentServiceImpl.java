@@ -33,5 +33,8 @@ public studentEntity updateById(Long id,StudentEntity newstu){
    return repo.save(newstu);
 
 }
-publice studentEntity deleteByID(Long)
+publice studentEntity deleteByID(Long id){
+    studentEntity data=getbyId(id);
+    return repo.deleteById(id);
+}
 }

@@ -28,24 +28,12 @@ public class studentServiceImpl implements studentService {
 
     @Override
     public studentEntity getById(Long id) {
-        // Optional<studentEntity> data = repo.findById(id);
-        // if (data.isPresent()) {
-        //     return data.get();
-        // } else {
-        //     return null;
-        // }
+       
         return repo.findById(id).orElseThrow(()->new StudentNotFoundException("Student ID not found"));
     }
 
     @Override
-    public studentEntity updateStudent(Long id, studentEntity newstu) {
-        // if (repo.existsById(id)) {
-        //     newstu.setId(id);
-        //     repo.save(newstu);
-        //     return "Student updated";
-        // }
-        // return "Student not found";
-        
+    public studentEntity updateStudent(Long id, studentEntity newstu) {     
         studentEntity existing = getById(id);
         newstu.setId(existing.getId()); //newstu.setId(id);
         return repo.save(newstu);
@@ -53,11 +41,7 @@ public class studentServiceImpl implements studentService {
 
     @Override
     public String deleteStudent(long id) {
-        // if (repo.existsById(id)) {
-        //     repo.deleteById(id);
-        //     return "Student deleted";
-        // }
-        // return "Student not found";
+       
 
         studentEntity existing = getById(id);
         repo.deleteById(id);
